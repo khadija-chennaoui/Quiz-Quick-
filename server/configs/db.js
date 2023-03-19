@@ -1,10 +1,14 @@
-const mongoose = require('mongoose')
-require('dotenv').config()
-try{
+const mongoose = require('mongoose');
+const env = require('dotenv').config()
+mongoose.set('strictQuery', true)
+try {
     module.exports = mongoose.connect(process.env.DB)
-    .then(() => console.log('Connected'))
-    .catch(() => console.log('Not Connected'))
+        .then(() => {
+            console.log('Connected')
+        }).catch(() => {
+            console.log('Not Connected');
+        })
 }
-catch(error){
-    resizeBy.send(error)
+catch (error) {
+    res.send(error)
 }
