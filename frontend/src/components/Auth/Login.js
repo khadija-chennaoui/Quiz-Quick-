@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Background from '../../assets/images/bg.png'
-
 export default function Login() {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const handleLogin = () => {
+        console.log(email, password)
+    }
     return (
         <div>
-            <div style={{ backgroundImage: `url(${Background})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }} class="h-screen flex items-center justify-center ">
+            <div style={{ backgroundImage: `url(${Background})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }} className="h-screen flex items-center justify-center ">
                 <div className="min-h-screen  py-6 flex flex-col justify-center sm:py-12">
                     <div className="relative py-3 sm:max-w-xl sm:mx-auto">
                         <div className="absolute inset-0 bg-gradient-to-r from-[#A60C7B] to-[#571269] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
@@ -12,7 +16,7 @@ export default function Login() {
                             <div className="max-w-md mx-auto">
                                 <div>
                                     <h1 className="text-2xl font-semibold">
-                                       Welcom To Login In Quiz Quick
+                                        Welcom To Login In Quiz Quick
                                     </h1>
                                 </div>
                                 <div className="divide-y divide-gray-200">
@@ -25,6 +29,8 @@ export default function Login() {
                                                 type="text"
                                                 className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                                                 placeholder="Email address"
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
                                             />
                                             <label
                                                 htmlFor="email"
@@ -41,6 +47,8 @@ export default function Login() {
                                                 type="password"
                                                 className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                                                 placeholder="Password"
+                                                value={password}
+                                                onChange={(e) => setPassword(e.target.value)}
                                             />
                                             <label
                                                 htmlFor="password"
@@ -50,7 +58,7 @@ export default function Login() {
                                             </label>
                                         </div>
                                         <div className="relative">
-                                            <button className="bg-[#A60C7B] text-white rounded-md px-2 py-1">
+                                            <button className="bg-[#A60C7B] text-white rounded-md px-2 py-1" onClick={handleLogin}>
                                                 Submit
                                             </button>
                                         </div>
