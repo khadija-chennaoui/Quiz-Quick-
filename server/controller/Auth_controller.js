@@ -9,7 +9,7 @@ const env = require('dotenv').config()
 const register = async (req, res) => {
     const { body } = req;
     if (!body.name || !body.password || !body.email) throw Error("input non valide!");
-    const email_existe = await User.findOne({ where: { email: body.email } });
+    const email_existe = await User.findOne({ email: body.email });
     if (email_existe) throw Error("User déja existe");
     const hash_password = await bcrypt.hash(body.password, 10);
     const ProfRole = await Role.findOne({ name: "Prof" });
@@ -27,8 +27,9 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     const { body } = req;
     if (!body.password || !body.email) throw Error("inputs no valide!");
-    const existe_user = await User.findOne({ where: { email: body.email } });
-    if (!existe_user || !(await bcrypt.compare(body.password, existe_user.password))) throw Error("Email or Password inccorect");
+    const existe_user = await User.findOne({ email: body.email });
+    console.log(existe_user)
+    if (!existe_user || !(await bcrypt.compare(body.password, existe_user.password))) throw Error("Incorrect username or password provided");
     else {
         const creatToken = await jwt.sign(
             {

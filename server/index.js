@@ -1,3 +1,4 @@
+const cors = require('cors')
 const express = require('express')
 const errorHandler = require('./middlewares/ErrorHandler')
 const roles = require('./routes/roleRoute')
@@ -5,6 +6,7 @@ const User = require('./routes/userRoute')
 require('./configs/db')
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 app.use(express.urlencoded({ extended: true }))
 app.use('/addRole', roles)
