@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { AiFillDatabase } from "react-icons/ai";
 import { FaSlidersH, FaUserGraduate, FaRegNewspaper, FaRegClipboard } from "react-icons/fa";
 const Sidbar = () => {
     return (
@@ -39,6 +40,15 @@ const Sidbar = () => {
                         </NavLink>
                         <NavLink
                             className="hover:border-[#571269] flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-400 transition-colors duration-200 border-l-4 border-transparent hover:text-gray-800"
+                            to="CreatQuiz"
+                        >
+                            <span className="text-left">
+                                <AiFillDatabase />
+                            </span>
+                            <span className="mx-4 text-sm font-normal">Creation de quiz</span>
+                        </NavLink>
+                        <NavLink
+                            className="hover:border-[#571269] flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-400 transition-colors duration-200 border-l-4 border-transparent hover:text-gray-800"
                             to="formation"
                         >
                             <span className="text-left">
@@ -46,15 +56,8 @@ const Sidbar = () => {
                             </span>
                             <span className="mx-4 text-sm font-normal">Results</span>
                         </NavLink>
-                        {/* <NavLink
-                            className="hover:border-lime-500 flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-400 transition-colors duration-200 border-l-4 border-transparent hover:text-gray-800"
-                            to="assigniement"
-                        >
-                            <span className="text-left">
-                                <RiShoppingCart2Line />
-                            </span>
-                            <span className="mx-4 text-sm font-normal">Assigniement</span>
-                        </NavLink> */}
+                      
+                     
                     </div>
                 </nav>
             </div>
