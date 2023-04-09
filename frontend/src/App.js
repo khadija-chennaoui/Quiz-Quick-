@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/Auth/Login";
 import AddEtud from "./components/Dashboard/AddEtud";
+import CreatQuiz from "./components/Dashboard/CreatQuiz";
 import { AddQuiz } from "./components/Dashboard/AddQuiz";
 import Dashboard from "./components/Dashboard/dashboard";
 
@@ -14,6 +15,7 @@ export default function App() {
                 <Route path="/dash" element={<Dashboard />} >
                     <Route path="/dash/AddEtud" element={<AddEtud />} />
                     <Route path="/dash/AddQuiz" element={<AddQuiz />} />
+                    <Route path="/dash/CreatQuiz" element={<CreatQuiz />} />
 
                 </Route>
             </Routes>
