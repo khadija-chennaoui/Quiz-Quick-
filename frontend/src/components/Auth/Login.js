@@ -1,11 +1,31 @@
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 import Background from '../../assets/images/bg.png'
 export default function Login() {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const handleLogin = () => {
-        console.log(email, password)
+    const Navigate = useNavigate({})
+    const [user, setUser] = useState({})
+    function handleChange(e) {
+        const val = e.target.value;
+        setUser({
+            ...user,
+            [e.target.name]: val,
+        });
     }
+    const handleLogin = (e) => {
+        e.preventDefault();
+        axios.post(`http://localhost:4040/Auth/login`, user)
+            .then((res) => {
+                if (res.data.token && res.data.role == '641786171c80cfc547eb06d1') {
+                    Navigate('/dash')
+                }
+            }
+            )
+            .catch((err) => {
+                console.log(err)
+            })
+    }
+
     return (
         <div>
             <div style={{ backgroundImage: `url(${Background})`, backgroundRepeat: "no-repeat", backgroundSize: "cover" }} className="h-screen flex items-center justify-center ">
@@ -24,13 +44,11 @@ export default function Login() {
                                         <div className="relative">
                                             <input
                                                 autoComplete="off"
-                                                id="email"
                                                 name="email"
                                                 type="text"
                                                 className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                                                 placeholder="Email address"
-                                                value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
+                                                onChange={handleChange}
                                             />
                                             <label
                                                 htmlFor="email"
@@ -42,14 +60,11 @@ export default function Login() {
                                         <div className="relative">
                                             <input
                                                 autoComplete="off"
-                                                id="password"
                                                 name="password"
                                                 type="password"
                                                 className="peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600"
                                                 placeholder="Password"
-                                                value={password}
-                                                onChange={(e) => setPassword(e.target.value)}
-                                            />
+                                                onChange={handleChange} />
                                             <label
                                                 htmlFor="password"
                                                 className="absolute left-0 -top-3.5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"

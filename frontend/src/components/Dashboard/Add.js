@@ -1,9 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import axios from 'axios'
 const style_input = "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline";
 const style_label = "block text-gray-700 text-lg font-semibold mb-2 ";
 
 const Add = () => {
     const [showModal, setShowModal] = useState(false);
+    const [user, setUser] = useState({})
+    function handleChange(e) {
+        const val = e.target.value;
+        setUser({
+            ...user,
+            [e.target.name]: val,
+        });
+    }
+    const handleLogin = (e) => {
+        e.preventDefault();
+        axios.post(`http://localhost:4040/Auth/register`, user)
+            .then((res) => {
+                console.log(res)
+            }
+            )
+            .catch((err) => {
+                console.log(err)
+            })
+    }
 
     return (
         <>
@@ -12,7 +32,7 @@ const Add = () => {
                 type="button"
                 onClick={() => setShowModal(true)}
             >
-                Ajouter étudiant(e) 
+                Ajouter étudiant(e)
             </button>
             {showModal ? (
                 <>
@@ -38,6 +58,7 @@ const Add = () => {
                                                     className={style_input}
                                                     type="text"
                                                     placeholder="Name"
+                                                    onChange={handleChange}
                                                 />
                                             </div>
                                             <div className="mb-4">
@@ -49,6 +70,19 @@ const Add = () => {
                                                     className={style_input}
                                                     type="email"
                                                     placeholder="Email"
+                                                    onChange={handleChange}
+                                                />
+                                            </div>
+                                            <div className="mb-4">
+                                                <label className={style_label} htmlFor="phone">
+                                                    Phone
+                                                </label>
+                                                <input
+                                                    name="phone"
+                                                    className={style_input}
+                                                    type="phone"
+                                                    placeholder="Phone"
+                                                    onChange={handleChange}
                                                 />
                                             </div>
                                             <div className="mb-4">
@@ -60,6 +94,7 @@ const Add = () => {
                                                     className={style_input}
                                                     type="password"
                                                     placeholder="Password"
+                                                    onChange={handleChange}
                                                 />
                                             </div>
 
@@ -68,12 +103,12 @@ const Add = () => {
                                         <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                                             <button className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                                 type="Cancel"
-                                                onClick={() => setShowModal(false)}>Close</button>
+                                                onClick={() => setShowModal(false)}>Fermer</button>
                                             <button
-                                                className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                                type="submit"
+                                                className="bg-[#571269] text-white active:bg-[#A60C7B] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                                type="submit" onClick={handleLogin}
                                             >
-                                                Save Changes
+                                                Enregister
                                             </button>
                                         </div>
                                     </form>
