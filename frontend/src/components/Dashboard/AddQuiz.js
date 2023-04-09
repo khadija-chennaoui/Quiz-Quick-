@@ -26,7 +26,7 @@ export const AddQuiz = () => {
         e.preventDefault();
         axios.post(`http://localhost:4040/quiz/addQuiz`, quiz)
             .then((res) => {
-                console.log(res)
+                window.location.reload();
                 setQuiz({
                     ...quiz == "",
                 });
@@ -37,7 +37,7 @@ export const AddQuiz = () => {
             })
     }
     return (
-        < >
+        <>
             <button
                 className="bg-[#571269] text-white active:bg-[#A60C7B] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mt-8 ease-linear transition-all duration-150"
                 type="button"
@@ -97,8 +97,7 @@ export const AddQuiz = () => {
             <div className="grid w-full gap-6 md:grid-cols-2 mt-7">
 
                 {afficheall.map((item, i) => (
-
-                    <a
+                    <a key={i}
                         href="#"
                         className="flex flex-row items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
                     >
@@ -114,9 +113,7 @@ export const AddQuiz = () => {
                         </div>
                     </a>
                 ))}
-
             </div>
         </>
-
     )
 }
