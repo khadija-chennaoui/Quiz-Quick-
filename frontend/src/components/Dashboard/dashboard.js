@@ -27,7 +27,7 @@ const Dashboard = () => {
                         </header>
                         <div class="h-screen px-4 pb-24 overflow-auto md:px-6">
                             <h1 class="text-4xl font-semibold text-[#571269] dark:text-white mb-3">
-                                Good afternoom, Admin
+                                Hi  Prof  !   
                             </h1>
                             <h2 class=" text-md text-[#571269]">
                                 Here&#x27;s what&#x27;s happening with your ambassador account
