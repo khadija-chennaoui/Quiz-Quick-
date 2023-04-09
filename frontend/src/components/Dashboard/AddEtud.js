@@ -26,6 +26,7 @@ const AddEtud = () => {
                     alert('Etudiant deleted')
                     console.log(res.data)
                 }
+                window.location.reload();
             })
     };
     return (
