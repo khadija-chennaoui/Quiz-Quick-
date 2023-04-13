@@ -5,6 +5,9 @@ import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {
     const [sidbar, setSidbar] = useState()
+    const Logout = () => {
+        localStorage.removeItem('role')
+    }
     return (
         <>
             <main class="relative h-screen overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -21,13 +24,13 @@ const Dashboard = () => {
                             </div>
                             <div class="relative z-20 flex flex-col justify-end h-full px-3 md:w-full">
                                 <div class="relative flex items-center justify-end w-full p-1 space-x-4">
-                                    <button className="bg-[#571269] text-white active:bg-[#A60C7B] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit">Logout</button>
+                                    <button onClick={Logout} className="bg-[#571269] text-white active:bg-[#A60C7B] font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit">Logout</button>
                                 </div>
                             </div>
                         </header>
                         <div class="h-screen px-4 pb-24 overflow-auto md:px-6">
                             <h1 class="text-4xl font-semibold text-[#571269] dark:text-white mb-3">
-                                Hi  Prof  !   
+                                Hi  Prof  !
                             </h1>
                             <h2 class=" text-md text-[#571269]">
                                 Here&#x27;s what&#x27;s happening with your ambassador account

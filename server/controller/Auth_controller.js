@@ -12,7 +12,7 @@ const register = async (req, res) => {
     const email_existe = await User.findOne({ email: body.email });
     if (email_existe) throw Error("User déja existe");
     const hash_password = await bcrypt.hash(body.password, 10);
-    const ProfRole = await Role.findOne({ name: "Prof" });
+    const ProfRole = await Role.findOne({ name: "Etudiant" });
     const create_user = await User.create({
         ...body,
         password: hash_password,
@@ -26,7 +26,6 @@ const login = async (req, res) => {
     const { body } = req;
     if (!body.password || !body.email) throw Error("inputs no valide!");
     const existe_user = await User.findOne({ email: body.email });
-    console.log(existe_user)
     if (!existe_user || !(await bcrypt.compare(body.password, existe_user.password))) throw Error("Incorrect username or password provided");
     else {
         const creatToken = await jwt.sign(
@@ -50,18 +49,18 @@ const verifyToken = async (req, res) => {
 const logout = (req, res) => {
     storage.remove("token");
     res.send({ message: "User is logouted" });
-};
-const AllUser = async(req, res) => {
-    const All = await User.find()
+}
+const AllUser = async (req, res) => {
+    const All = await User.find({ role_id: '64178667a135c9e70380a2ab' })
     if (!All) throw Error('No user existe')
     res.status(200).json(All)
 }
+
 const Delete = async (req, res) => {
-    const {id} = req.params
-        const DeletUser = await User.findByIdAndDelete({ _id: id });
+    const { id } = req.params
+    const DeletUser = await User.findByIdAndDelete({ _id: id });
     if (DeletUser) res.json({ mes: "deleted" })
     else throw Error('notfind')
-    // res.json({mes:"deleted"})
 }
 
 

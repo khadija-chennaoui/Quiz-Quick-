@@ -16,8 +16,16 @@ export default function Login() {
         e.preventDefault();
         axios.post(`http://localhost:4040/Auth/login`, user)
             .then((res) => {
+                localStorage.setItem('token', res.data.token)
+                localStorage.setItem('role', res.data.role)
                 if (res.data.token && res.data.role == '641786171c80cfc547eb06d1') {
                     Navigate('/dash')
+                }
+                if (res.data.token && res.data.role == '64178667a135c9e70380a2ab') {
+                    Navigate('/PageEtudiants')
+                }
+                if (!res.data.token && !res.data.role) {
+                    alert(res.data.errmsg)
                 }
             }
             )

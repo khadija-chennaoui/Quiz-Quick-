@@ -13,7 +13,7 @@ const Sidbar = () => {
                     <div>
                         <NavLink
                             className="hover:border-[#571269] flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-400 transition-colors duration-200 border-l-4 border-transparent hover:text-gray-800"
-                            to="statistic"
+                            to="Statistic"
                         >
                             <span className="text-left">
                                 <FaSlidersH />
@@ -49,7 +49,7 @@ const Sidbar = () => {
                         </NavLink>
                         <NavLink
                             className="hover:border-[#571269] flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-400 transition-colors duration-200 border-l-4 border-transparent hover:text-gray-800"
-                            to="formation"
+                            to=""
                         >
                             <span className="text-left">
                                 <FaRegClipboard />
